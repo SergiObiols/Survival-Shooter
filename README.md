@@ -1,2 +1,2 @@
-# Shooter-Survival
-Shooter Survival Unity
+# Survival-Shooter
+Survival Shooter Unity
