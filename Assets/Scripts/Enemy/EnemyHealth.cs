@@ -5,7 +5,8 @@ public class EnemyHealth : MonoBehaviour
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
-    public int scoreValue = 10;
+    public int scoreDeathValue;
+    public int scoreHitValue;
     public AudioClip deathClip;
 
 
@@ -37,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage (int amount, Vector3 hitPoint)
+    public void TakeDamage (int amount, RaycastHit hitPoint)
     {
         if(isDead)
             return;
@@ -45,13 +46,19 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio.Play ();
 
         currentHealth -= amount;
+
+        ScoreManager.score += scoreHitValue;
             
-        hitParticles.transform.position = hitPoint;
+        hitParticles.transform.position = hitPoint.point;
         hitParticles.Play();
 
         if(currentHealth <= 0)
         {
-            Death ();
+            Death();
+        }
+        else
+        {
+            transform.position -= hitPoint.normal.normalized / 2;
         }
     }
 
@@ -74,7 +81,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        ScoreManager.score += scoreValue;
+        ScoreManager.score += scoreDeathValue;
         Destroy (gameObject, 2f);
     }
 }

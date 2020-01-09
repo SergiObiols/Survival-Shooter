@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,9 +9,12 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public Slider healthSlider;
     public Image damageImage;
+    public Image colorFill;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public Color MaxHealthColor = Color.green;
+    public Color MinHealthColor = Color.red;
 
 
     Animator anim;
@@ -53,6 +57,8 @@ public class PlayerHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
+        colorFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)currentHealth / startingHealth);
+
         playerAudio.Play ();
 
         if(currentHealth <= 0 && !isDead)
@@ -80,6 +86,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void RestartLevel ()
     {
-        Application.LoadLevel (Application.loadedLevel);
+        SceneManager.LoadScene("miv1");
     }
 }
