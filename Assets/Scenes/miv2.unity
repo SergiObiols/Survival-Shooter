@@ -4416,9 +4416,12 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 391612899}
   damageImage: {fileID: 549760544}
+  colorFill: {fileID: 0}
   deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.49803922}
+  MaxHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  MinHealthColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1536051045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400080, guid: f1d84cc28597f5641a3d9cbc4df7e306,

@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 	Vector3 movement;                   // The vector to store the direction of the player's movement.
 	Animator anim;                      // Reference to the animator component.
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+	Light playerLight;
 	
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 	float camRayLength = 100f;          // The length of the ray from the camera into the scene.
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 		// Set up references.
 		anim = GetComponent <Animator> ();
 		playerRigidbody = GetComponent <Rigidbody> ();
+		playerLight = playerRigidbody.GetComponent <Light>();
+
 	}
 	
 	
@@ -25,6 +28,9 @@ public class PlayerMovement : MonoBehaviour {
 		// Store the input axes.			
 		float h = Input.GetAxisRaw ("Horizontal");
 		float v = Input.GetAxisRaw ("Vertical");
+
+		// Check 
+		Dash();
 
 		// Move the player around the scene.
 		Move (h, v);
@@ -80,5 +86,17 @@ public class PlayerMovement : MonoBehaviour {
 		
 		// Tell the animator whether or not the player is walking.
 		anim.SetBool ("IsWalking", walking);
+	}
+
+	private void Dash() {
+
+		if(Input.GetKey(KeyCode.Space)) {
+			speed = 12;
+			playerLight.enabled = true;
+
+		}else {
+			speed = 6;
+			playerLight.enabled = false;
+		}
 	}
 }
