@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerMovement : MonoBehaviour {
 	public float speed = 6f;            // The speed that the player will move at.
@@ -7,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 	Animator anim;                      // Reference to the animator component.
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 	Light playerLight;
+	public Slider speedSlider;
 	
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 	float camRayLength = 100f;          // The length of the ray from the camera into the scene.
@@ -89,13 +92,15 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Dash() {
 
-		if(Input.GetKey(KeyCode.Space)) {
+		if(Input.GetKey(KeyCode.Space) && speedSlider.value > 0) {
 			speed = 12;
 			playerLight.enabled = true;
+			speedSlider.value -= 1;
 
 		}else {
 			speed = 6;
 			playerLight.enabled = false;
+			speedSlider.value += 1;
 
 		}
 	}
