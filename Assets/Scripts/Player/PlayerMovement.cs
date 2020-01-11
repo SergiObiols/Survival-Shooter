@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 	Light playerLight;
 	public Slider speedSlider;
+	bool canUseSpeed = true;
 	
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 	float camRayLength = 100f;          // The length of the ray from the camera into the scene.
@@ -92,7 +93,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Dash() {
 
-		if(Input.GetKey(KeyCode.Space) && speedSlider.value > 0) {
+		if(speedSlider.value == 100) canUseSpeed = true;
+
+
+		if(Input.GetKey(KeyCode.Space) && speedSlider.value > 0 && canUseSpeed) {
 			speed = 12;
 			playerLight.enabled = true;
 			speedSlider.value -= 1;
@@ -100,6 +104,7 @@ public class PlayerMovement : MonoBehaviour {
 		}else {
 			speed = 6;
 			playerLight.enabled = false;
+			canUseSpeed = false;
 			speedSlider.value += 1;
 
 		}
