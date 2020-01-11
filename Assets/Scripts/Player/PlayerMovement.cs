@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour {
 		anim = GetComponent <Animator> ();
 		playerRigidbody = GetComponent <Rigidbody> ();
 		playerLight = playerRigidbody.GetComponent <Light>();
-
 	}
 	
 	
@@ -97,6 +96,7 @@ public class PlayerMovement : MonoBehaviour {
 		}else {
 			speed = 6;
 			playerLight.enabled = false;
+
 		}
 	}
 }
