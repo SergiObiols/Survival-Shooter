@@ -1484,6 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  speedSlider: {fileID: 7651443}
 --- !u!82 &1536051047
 AudioSource:
   m_ObjectHideFlags: 0
