@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject PauseMenuUI;
-    [SerializeField] public bool GamePaused;
+    [SerializeField] public GameObject PauseMenuUI;
+    
+    [SerializeField] public  bool GamePaused;
 
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -25,6 +26,11 @@ public class PauseMenu : MonoBehaviour
         {
             DeactivateMenu();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     void ActivateMenu()
@@ -35,9 +41,9 @@ public class PauseMenu : MonoBehaviour
 
     public void DeactivateMenu()
     {
-        GamePaused = false;
         Time.timeScale = 1;
         PauseMenuUI.SetActive(false);
     }
+
 
 }
