@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
-    public int scoreDeathValue;
+    public int scoreValue = 10;
     public int scoreHitValue;
     public AudioClip deathClip;
 
@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
 
         currentHealth -= amount;
 
-        ScoreManager.score += scoreHitValue;
+        //ScoreManager.score += scoreHitValue;
             
         hitParticles.transform.position = hitPoint.point;
         hitParticles.Play();
@@ -92,7 +92,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        ScoreManager.score += scoreDeathValue;
+        ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);
     }
 }
