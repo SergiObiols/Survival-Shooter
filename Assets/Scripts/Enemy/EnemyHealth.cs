@@ -2,6 +2,7 @@
 
 public class EnemyHealth : MonoBehaviour
 {
+    public GameObject FloatingTextPrefab;
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
@@ -52,7 +53,12 @@ public class EnemyHealth : MonoBehaviour
         hitParticles.transform.position = hitPoint.point;
         hitParticles.Play();
 
-        if(currentHealth <= 0)
+        if(FloatingTextPrefab && currentHealth > 0)
+        {
+            ShowFloatingText();
+        }
+
+        if (currentHealth <= 0)
         {
             Death();
         }
@@ -62,6 +68,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    void ShowFloatingText()
+    {
+        var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = currentHealth.ToString();
+    }
 
     void Death ()
     {
