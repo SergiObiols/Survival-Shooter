@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] public GameObject PauseMenuUI;
     
-    [SerializeField] private bool GamePaused;
+    [SerializeField] public  bool GamePaused;
 
 
     void Update()
@@ -26,6 +26,11 @@ public class PauseMenu : MonoBehaviour
         {
             DeactivateMenu();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     void ActivateMenu()
@@ -38,12 +43,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseMenuUI.SetActive(false);
-        GamePaused = false;
     }
 
-    public void Quit2Menu()
-    {
-        SceneManager.LoadScene("Menu");
-    }
 
 }
