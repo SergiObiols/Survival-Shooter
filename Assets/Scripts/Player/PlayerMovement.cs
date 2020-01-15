@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour {
 	Light playerLight;
 	public ParticleSystem particlesSpeed;
 	public Slider speedSlider;
+	public Slider soulSlider;
+	bool canUseSoul = false;
 	bool canUseSpeed = true;
 	
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 		// Set up references.
 		anim = GetComponent <Animator> ();
 		playerRigidbody = GetComponent <Rigidbody> ();
+
 	}
 	
 	
@@ -34,6 +37,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		// Check 
 		Dash();
+
+		Souls();
 
 		// Move the player around the scene.
 		Move (h, v);
@@ -106,6 +111,20 @@ public class PlayerMovement : MonoBehaviour {
 			speed = 6;
 			canUseSpeed = false;
 			speedSlider.value += 1;
+
+		}
+	}
+
+	private void Souls() {
+
+		if(soulSlider.value == 100) canUseSoul = true;
+
+
+		if(Input.GetKeyDown(KeyCode.G) && canUseSoul) {
+			soulSlider.value -= 1;
+
+		}else {
+			canUseSoul = false;
 
 		}
 	}
