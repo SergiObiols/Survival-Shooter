@@ -1,8 +1,9 @@
-﻿ using UnityEngine;
+﻿  using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     public GameObject FloatingTextPrefab;
+    public GameObject DropLootPrefab;
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
@@ -10,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public int scoreHitValue;
     public AudioClip deathClip;
 
-
+    GameObject _dropLootTarget;
     Animator anim;
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
@@ -18,6 +19,10 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
+    void Start()
+    {
+        _dropLootTarget = GameObject.FindGameObjectWithTag("DropLootTracker");
+    }
 
     void Awake ()
     {
@@ -84,6 +89,13 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
+
+        for (int i = 0; i < startingHealth / 10; i++)
+        {
+            var go = Instantiate(DropLootPrefab, transform.position + new Vector3(0, Random.Range(0, 2)), Quaternion.identity);
+
+            go.GetComponent<Follow>().Target = _dropLootTarget.transform;
+        }
     }
 
 

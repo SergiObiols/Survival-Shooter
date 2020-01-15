@@ -261,10 +261,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloatingTextPrefab: {fileID: 1652215423142819631, guid: 8127b8d2bc8340cf9ad7c32e3f6aa873,
     type: 3}
+  DropLootPrefab: {fileID: 8971628630514462499, guid: a7d83b4e674c22007b40662c6c2e6c9a,
+    type: 3}
   startingHealth: 100
   currentHealth: 0
   sinkSpeed: 2.5
-  scoreDeathValue: 100
+  scoreValue: 10
   scoreHitValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
 --- !u!1 &142812

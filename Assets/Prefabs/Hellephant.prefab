@@ -5043,10 +5043,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloatingTextPrefab: {fileID: 1652215423142819631, guid: b8e32268b249a9fd6948cc0397508514,
     type: 3}
+  DropLootPrefab: {fileID: 8971628630514462499, guid: 537d5f44d97fc4e21afd325665b5599c,
+    type: 3}
   startingHealth: 300
   currentHealth: 0
   sinkSpeed: 2.5
-  scoreDeathValue: 300
+  scoreValue: 10
   scoreHitValue: 10
   deathClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
 --- !u!114 &11474866
