@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 	Animator anim;                      // Reference to the animator component.
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 	Light playerLight;
+	public ParticleSystem particlesSpeed;
 	public Slider speedSlider;
 	bool canUseSpeed = true;
 	
@@ -23,7 +24,6 @@ public class PlayerMovement : MonoBehaviour {
 		// Set up references.
 		anim = GetComponent <Animator> ();
 		playerRigidbody = GetComponent <Rigidbody> ();
-		playerLight = playerRigidbody.GetComponent <Light>();
 	}
 	
 	
@@ -97,13 +97,13 @@ public class PlayerMovement : MonoBehaviour {
 
 
 		if(Input.GetKey(KeyCode.Space) && speedSlider.value > 0 && canUseSpeed) {
+			if(particlesSpeed != null) particlesSpeed.Play();
 			speed = 12;
-			playerLight.enabled = true;
 			speedSlider.value -= 1;
 
 		}else {
+			if(particlesSpeed != null) particlesSpeed.Stop();
 			speed = 6;
-			playerLight.enabled = false;
 			canUseSpeed = false;
 			speedSlider.value += 1;
 
