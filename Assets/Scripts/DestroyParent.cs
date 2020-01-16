@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class DestroyParent : MonoBehaviour
 {
+    Slider soulSlider;
 
-	public Slider soulSlider;
+    void Start()
+    {
+        soulSlider = GameObject.FindGameObjectWithTag("soulSliderTag").GetComponent<Slider>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if(soulSlider.value < 100) soulSlider.value += 5;
+            if(soulSlider.value < 100) soulSlider.value += 1;
             Destroy(transform.parent.gameObject);
 
         }
