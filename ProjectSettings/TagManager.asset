@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DropLootTracker
   - soulSliderTag
+  - PickedUpTag
   layers:
   - Default
   - TransparentFX
