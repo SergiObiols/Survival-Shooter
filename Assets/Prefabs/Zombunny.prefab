@@ -268,6 +268,8 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 10
   scoreHitValue: 5
+  deathParticles: {fileID: 198681264470032530, guid: aa8d6482d70a23445b4b2a928ed1b845,
+    type: 3}
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
 --- !u!1 &142812
 GameObject:

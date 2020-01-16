@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public int scoreHitValue;
+    public ParticleSystem deathParticles;
     public AudioClip deathClip;
 
     GameObject _dropLootTarget;
@@ -82,6 +83,9 @@ public class EnemyHealth : MonoBehaviour
     void Death ()
     {
         isDead = true;
+
+        if (deathParticles != null) deathParticles.Play();
+        else transform.position = new Vector3(0,0,0);
 
         capsuleCollider.isTrigger = true;
 
