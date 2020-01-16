@@ -4,16 +4,20 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 	public float speed = 6f;            // The speed that the player will move at.
+	public ParticleSystem particlesSpeed;
+	public ParticleSystem particlesSoul;
+	public Slider speedSlider;
+	public Slider soulSlider;
+	public PlayerShooting PlayerShooting;
 
 	Vector3 movement;                   // The vector to store the direction of the player's movement.
 	Animator anim;                      // Reference to the animator component.
 	Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 	Light playerLight;
-	public ParticleSystem particlesSpeed;
-	public Slider speedSlider;
-	public Slider soulSlider;
+
 	bool canUseSoul = false;
 	bool canUseSpeed = true;
+	bool alreadyPressed = false;
 	
 	int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
 	float camRayLength = 100f;          // The length of the ray from the camera into the scene.
@@ -117,14 +121,23 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Souls() {
 
-		if(soulSlider.value == 100) canUseSoul = true;
+		if(soulSlider.value == 200) canUseSoul = true;
 
-
-		if(Input.GetKeyDown(KeyCode.G) && canUseSoul) {
+		if((Input.GetKeyDown(KeyCode.G) && canUseSoul) || alreadyPressed) {
 			soulSlider.value -= 1;
+			playerRigidbody.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+			PlayerShooting.damagePerShot = 40;
+			if(particlesSoul != null) particlesSoul.Play();
+			alreadyPressed = true;
+			if(soulSlider.value == 0) {
+				if(particlesSoul != null) particlesSoul.Stop();
+				canUseSoul = false;
+				alreadyPressed = false;
+				playerRigidbody.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+				PlayerShooting.damagePerShot = 20;
 
-		}else {
-			canUseSoul = false;
+
+			} 
 
 		}
 	}

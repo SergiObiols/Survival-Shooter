@@ -16,7 +16,7 @@ public class DestroyParent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(soulSlider.value < 100) soulSlider.value += 1;
+            if(soulSlider.value < 200) soulSlider.value += 1;
             Destroy(transform.parent.gameObject);
 
         }
