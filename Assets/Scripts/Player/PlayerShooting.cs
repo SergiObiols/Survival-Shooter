@@ -32,7 +32,7 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
-        remainingShots = 100;
+        remainingShots = 500;
         ammoText.text = remainingShots.ToString();
     }
 

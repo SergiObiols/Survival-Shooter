@@ -95,6 +95,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void RestartLevel ()
     {
-        SceneManager.LoadScene("miv1");
+        SceneManager.LoadScene("Menu");
     }
 }
