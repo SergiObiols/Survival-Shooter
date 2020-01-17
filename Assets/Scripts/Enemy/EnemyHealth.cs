@@ -84,8 +84,7 @@ public class EnemyHealth : MonoBehaviour
     {
         isDead = true;
 
-        if (deathParticles != null) deathParticles.Play();
-        else transform.position = new Vector3(0,0,0);
+        deathParticles.Play();
 
         capsuleCollider.isTrigger = true;
 
