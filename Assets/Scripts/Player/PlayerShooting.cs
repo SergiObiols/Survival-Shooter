@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
+    
+    Text ammoText;
+    
 
 
     float timer;
     Ray shootRay;
     RaycastHit shootHit;
+    int remainingShots;
     int shootableMask;
     ParticleSystem gunParticles;
     LineRenderer gunLine;
@@ -20,11 +26,14 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake ()
     {
+        ammoText = GameObject.FindGameObjectWithTag("AmmoTextTag").GetComponent<Text>();
         shootableMask = LayerMask.GetMask ("Shootable");
         gunParticles = GetComponent<ParticleSystem> ();
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
+        remainingShots = 100;
+        ammoText.text = remainingShots.ToString();
     }
 
 
@@ -32,7 +41,7 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && remainingShots>=1)
         {
             Shoot ();
         }
@@ -54,6 +63,10 @@ public class PlayerShooting : MonoBehaviour
     void Shoot ()
     {
         timer = 0f;
+
+        remainingShots = int.Parse(ammoText.text);
+        remainingShots -= 1;
+        ammoText.text = remainingShots.ToString();
 
         gunAudio.Play ();
 
