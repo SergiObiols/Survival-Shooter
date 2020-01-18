@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
     public int scoreHitValue;
     public ParticleSystem deathParticles;
+    public ParticleSystem deathVortex;
     public AudioClip deathClip;
 
     GameObject _dropLootTarget;
@@ -92,6 +93,13 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
+
+        if (deathVortex != null)
+        {
+            ParticleSystem vortex = Instantiate(deathVortex, transform.position, deathVortex.transform.rotation, transform);
+            vortex.Play();
+            Destroy(vortex, 3f);
+        }
 
         for (int i = 0; i < startingHealth / 10; i++)
         {

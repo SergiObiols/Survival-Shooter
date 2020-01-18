@@ -37,7 +37,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Update ()
     {
-        if(damaged)
+        colorFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)currentHealth / startingHealth);
+
+        if (damaged)
         {
             damageImage.color = flashColour;
         }
@@ -56,8 +58,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
 
         healthSlider.value = currentHealth;
-
-        colorFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)currentHealth / startingHealth);
 
         playerAudio.Play ();
 

@@ -164,6 +164,7 @@ MonoBehaviour:
   scoreValue: 10
   scoreHitValue: 5
   deathParticles: {fileID: 5124038113015284108}
+  deathVortex: {fileID: 0}
   deathClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -65917,8 +65918,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5033649398361151636}
   m_LocalRotation: {x: 0.7071068, y: -0.00000006181724, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.010000002, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 5031146768449899878}
   - {fileID: 5029867708489033294}
@@ -66015,7 +66016,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0

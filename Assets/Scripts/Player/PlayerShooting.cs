@@ -6,13 +6,14 @@ public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
+    public float timeBetweenProjectile = 10f;
     public float range = 100f;
+    public GameObject projectile;
     
     Text ammoText;
-    
 
-
-    float timer;
+    float bulletTimer;
+    float projectileTimer = 10f;
     Ray shootRay;
     RaycastHit shootHit;
     int remainingShots;
@@ -39,14 +40,23 @@ public class PlayerShooting : MonoBehaviour
 
     void Update ()
     {
-        timer += Time.deltaTime;
+        bulletTimer += Time.deltaTime;
+        projectileTimer += Time.deltaTime;
 
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && remainingShots>=1)
+		if(Input.GetButton ("Fire1") && bulletTimer >= timeBetweenBullets && Time.timeScale != 0 && remainingShots>=1)
         {
             Shoot ();
         }
 
-        if(timer >= timeBetweenBullets * effectsDisplayTime)
+        if(Input.GetButton("Fire2") && projectileTimer >= timeBetweenProjectile && Time.timeScale != 0)
+        {
+            projectileTimer = 0f;
+
+            GameObject explosive = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+            explosive.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+        }
+
+        if(bulletTimer >= timeBetweenBullets * effectsDisplayTime)
         {
             DisableEffects ();
         }
@@ -62,7 +72,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot ()
     {
-        timer = 0f;
+        bulletTimer = 0f;
 
         remainingShots = int.Parse(ammoText.text);
         remainingShots -= 1;
