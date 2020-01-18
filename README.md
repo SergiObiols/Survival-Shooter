@@ -1,6 +1,6 @@
 # Survival-Shooter
 
-Improvment game based on official tutorial of Survival Shooter by Unity3D.
+Improvement game based on official tutorial of [Survival Shooter](https://www.youtube.com/watch?v=_lP6epjupJs) by Unity3D.
 
 ## Installation
 
@@ -13,6 +13,10 @@ git clone git@github.com:SergiObiols/Survival-Shooter.git
 ## Requirements
 
 * [Unity3D](https://unity.com/)
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags in this repository](https://github.com/SergiObiols/Survival-Shooter/tags).
 
 ## Authors
 [**Aleix Vives**](https://github.com/aleixvb/)
