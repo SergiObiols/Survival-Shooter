@@ -5,9 +5,11 @@ using UnityEngine;
 public class ExplodingProjectile : MonoBehaviour
 {
     public ParticleSystem explosionParticles;
-    public Rigidbody playerRB;
+    public float blastRadius = 5f;
 
     AudioSource explosionAudio;
+    Ray knockRay;
+    RaycastHit knockHit;
 
     // Start is called before the first frame update
     void Start()
@@ -15,18 +17,35 @@ public class ExplodingProjectile : MonoBehaviour
         Debug.Log("Fiiiiuuu!!");
     }
 
+    private void Awake()
+    {
+        explosionAudio = GetComponent<AudioSource>();   
+    }
+
     // Update is called once per frame
     void OnCollisionEnter(Collision collision)
-    { 
-
-        if(collision.rigidbody != playerRB)
+    {
+        if(collision.gameObject.name != "Player")
         {
             Destroy(gameObject);
 
             ParticleSystem boom = Instantiate(explosionParticles, transform.position, Quaternion.identity);
             boom.Play();
 
-            Debug.Log("BOOM!");
+            Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
+
+            foreach (Collider nearObj in colliders)
+            {
+                EnemyHealth enemyHP = nearObj.GetComponent<EnemyHealth>();
+                if (enemyHP != null)
+                {
+                    knockRay.origin = transform.position;
+                    knockRay.direction = enemyHP.transform.position - transform.position;
+                    Physics.Raycast(knockRay, out knockHit);
+
+                    enemyHP.TakeDamage(80, knockHit);
+                }
+            }
 
             //explosionAudio.Play();
         }

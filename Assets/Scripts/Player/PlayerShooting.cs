@@ -53,7 +53,7 @@ public class PlayerShooting : MonoBehaviour
             projectileTimer = 0f;
 
             GameObject explosive = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-            explosive.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+            explosive.GetComponent<Rigidbody>().AddForce(transform.forward * 2500);
         }
 
         if(bulletTimer >= timeBetweenBullets * effectsDisplayTime)
